@@ -11,10 +11,10 @@ export async function showProducts(req, res){
 }
 
 export async function addProduct(req, res) {
-    const { name, image, value } = req.body
+    const { name, image, price, description } = req.body
 
     try {
-        const newProduct = { name, image, value};
+        const newProduct = { name, image, price, description};
         await db.collection("productsList").insertOne(newProduct)
         res.sendStatus(201)
         
