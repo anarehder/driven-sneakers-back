@@ -24,8 +24,8 @@ export async function signin(req, res){
     const token = uuid()
 
     try{
-        await sessionCollection.insertOne({token, userId: user._id})
-        res.send({token})
+        const newLogin = await sessionCollection.insertOne({token, userId: user._id})
+        res.send(newLogin)
     }catch(err){
         res.status(500).send(err.message)
     }
