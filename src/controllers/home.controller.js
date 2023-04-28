@@ -1,12 +1,20 @@
 import dayjs from "dayjs";
 import { db } from "../database/database.connection.js"
 
+export async function showProducts(req, res){
+    try{
+        const products = await db.collection("productsList"). find().toArray()
+        res.send(products)
+    }catch(err){
+        res.status(500).send(err.message)
+    }
+}
+
 export async function addProduct(req, res) {
     const { name, image, value } = req.body
 
     try {
         const newProduct = { name, image, value};
-        console.log(newProduct)
         await db.collection("productsList").insertOne(newProduct)
         res.sendStatus(201)
         
