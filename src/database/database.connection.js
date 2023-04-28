@@ -11,3 +11,6 @@ try {
     console.log(err.message)
 }
 export const db = mongoClient.db()
+
+export const userCollection = db.collection("users")
+
